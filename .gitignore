@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+
+# Frontend (in case anyone runs npm from root by mistake)
+node_modules/
+.next/
+
+# OS junk
+.DS_Store
