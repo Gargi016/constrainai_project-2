@@ -89,7 +89,6 @@ evaluation/           # Evaluation harness for precision, recall, and accuracy m
 tests/                # 82 automated integration tests (Zero mocks; real Z3 & DB paths)
 demo.py               # E2E Command-line interactive walkthrough
 ```
-
 ## ⚡ Tech Stack
 
 | <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python"> | <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white" alt="FastAPI"> | <img src="https://img.shields.io/badge/Z3__Solver-FF0000?style=flat&logo=processor&logoColor=white" alt="Z3"> | <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white" alt="Next.js"> | <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white" alt="SQLite"> | <img src="https://img.shields.io/badge/Pytest-0E7A0D?style=flat&logo=pytest&logoColor=white" alt="Pytest"> |
@@ -130,8 +129,9 @@ python3 -m evaluation.runner
 </details>
 
 ## Example walkthrough
- 
-State four constraints in the chat:
+ <details> 
+
+   State four constraints in the chat:
 ```
 Budget must stay under ₹20k
 GPU costs at least ₹14k
@@ -147,9 +147,14 @@ closing the same ₹4,000 shortfall from a different direction.
 Retract the RAM requirement ("Ignore my previous RAM requirement") or
 revise the budget upward ("Actually increase budget to ₹27k") and the
 system re-solves to SAT, live.
- 
+</details> 
+
 ## Evaluation results
- 
+ <details> 
+
+<p align="center">
+  <img src="assets/sl2.png" alt="EmoCodec banner" width="100%">
+</p>
 Run against 23 extraction turns and 6 conflict scenarios spanning
 budgeting, scheduling, and hardware-configuration domains:
  
@@ -160,7 +165,31 @@ budgeting, scheduling, and hardware-configuration domains:
 | Exact conflict-set match rate | 100% |
 | Repair validity (solver-verified) | 100% |
 | Solver latency @ 500 constraints | ~57ms |
+</details>
 
+## 🤝 How to Contribute
+
+Contributions are welcome! SymboLynx is an ongoing initiative to bridge the gap between flexible natural language processing and rigorous, deterministic formal verification. If you want to help expand its capabilities, feel free to fork the repository and submit a pull request.
+
+### 🎯 Targeted Areas for Contribution
+
+#### 1. Expand the Typed IR & Solver Coverage
+* **Set-Membership Operators:** Implement compilation down to Z3 assertions for the pre-defined boolean set-membership structures (`REQUIRES`, `EXCLUDES`).
+* **Non-Linear Systems:** Generalize the `compiler.py` and expression tree architectures to support non-linear relation constraints (e.g., multiplication of variables or power constraints).
+* **Domain Bounding Clamping:** Build out automatic lower/upper domain clamping systems to prevent the repair engine from proposing physically impossible values (like negative costs).
+
+#### 2. Robust Deterministic NLP Parsing
+* **Context-Free Grammars (CFG):** Upgrade `extraction.py` from native regular expressions to a robust, deterministic CFG parser (using frameworks like `Lark`) to extend the phrasing vocabulary without sacrificing reproducibility.
+* **Multi-sentence Extraction:** Add state tracking to resolve multi-sentence context dependencies (e.g., *"Budget is 20k. Hardware must consume at least half of it."*).
+
+#### 3. Frontend & Graph Visualization Enhancement
+* **Interactive Conflict Resolution:** Enable users to click directly on a proposed repair within the `ConflictGraph` UI to auto-inject the change back into the solver as a conversational `revise` mutation.
+* **State Timeline Scrubber:** Build a structural timeline UI component that allows developers to browse and inspect the constraint store across execution turns historical snapshots.
+
+#### 4. Hardening the Evaluation Harness
+* **Synthetic Test Generator:** Construct a property-based fuzzing script within `evaluation/` to automatically generate hundreds of chained, complex constraint paths to stress-test Z3 solving latency.
+
+---
  ## License
  
 MIT— see [LICENSE](LICENSE).
