@@ -1,9 +1,19 @@
+<p align="center">
+  <img src="assets/banner1.png" alt="EmoCodec banner" width="100%">
+</p>
 
 
-# SymboLynx
+<h1 align="center"> SymboLynx </h1>
 
-### Conversational Constraint Solving with Minimal Conflict Isolation and Repair
-
+<h2 align="center"> Conversational Constraint Solving with Minimal Conflict Isolation and Repair </h2>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python Version">
+  <img src="https://img.shields.io/badge/Z3__Solver-SMT-red?logo=processor&logoColor=white" alt="Z3 SMT Solver">
+  <img src="https://img.shields.io/badge/FastAPI-v0.100%2B-009688?logo=fastapi&logoColor=white" alt="FastAPI Backend">
+  <img src="https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white" alt="Next.js Frontend">
+  <img src="https://img.shields.io/badge/SQLite-SQLAlchemy-003B57?logo=sqlite&logoColor=white" alt="SQLite Database">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
+</p>
 SymboLynx allows users to state complex planning, budgeting, or scheduling requirements in plain English and receive mathematically verified answers. If the specified constraints are impossible to satisfy, SymboLynx does not guess—it isolates the exact, absolute subset-minimal conflict down to the sentences typed and computes precise, solver-verified mathematical repairs.
 
 Unlike traditional "AI planning" configurations that rely blindly on Large Language Models (LLMs) to reason—a process fundamentally prone to hallucinations—SymboLynx splits the problem in two: a **fuzzy layer** for parsing text and a **rigid layer** for proving the math. 
@@ -48,6 +58,7 @@ Tracked Solver ──── SAT/UNSAT check
                    Z3-optimization repair engine
                    (tightest fix per constraint, verified by re-solving)
 ```
+
 ### Key Technical Pillars
 
 * **Double-Verified Minimality:** Z3's raw `unsat_core` is not guaranteed to be minimal. SymboLynx passes the core through a secondary deletion-based shrinking algorithm to achieve a *subset-minimal* conflict. This boundary is then independently re-verified from scratch to ensure an algorithmic bug never yields a false minimal claim.
@@ -78,19 +89,17 @@ evaluation/           # Evaluation harness for precision, recall, and accuracy m
 tests/                # 82 automated integration tests (Zero mocks; real Z3 & DB paths)
 demo.py               # E2E Command-line interactive walkthrough
 ```
-## Tech stack
- 
-| Layer | Technology |
-|---|---|
-| Constraint IR | Python, Pydantic |
-| Solving | Z3 (SMT solver) |
-| API | FastAPI |
-| Persistence | SQLite via SQLAlchemy |
-| Frontend | Next.js, TypeScript, React |
-| Testing | pytest (82 tests), Next.js production build |
 
-## Running it
- 
+## ⚡ Tech Stack
+
+| <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python"> | <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white" alt="FastAPI"> | <img src="https://img.shields.io/badge/Z3__Solver-FF0000?style=flat&logo=processor&logoColor=white" alt="Z3"> | <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white" alt="Next.js"> | <img src="https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white" alt="SQLite"> | <img src="https://img.shields.io/badge/Pytest-0E7A0D?style=flat&logo=pytest&logoColor=white" alt="Pytest"> |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Core Engine / Pydantic IR | High-Performance API | Formal Verification Core | Frontend Interface / React | Persistence Layer / SQLAlchemy | Automated Integration Testing |
+
+## 🚀 Getting Started
+<details> 
+<summary><b>Click here for instructions to run this project yourself.</b></summary>
+
 **Backend:**
 ```bash
 python3 -m venv venv
@@ -118,6 +127,8 @@ python3 demo.py
 ```bash
 python3 -m evaluation.runner
 ```
+</details>
+
 ## Example walkthrough
  
 State four constraints in the chat:
@@ -152,5 +163,5 @@ budgeting, scheduling, and hardware-configuration domains:
 
  ## License
  
-MIT.
+MIT— see [LICENSE](LICENSE).
  
